@@ -2,6 +2,7 @@
 
 //Arduino based Code for PIR human Presence detection
 //Hardware requirments: Servo(sg90) x 1 , PIR (140 degree) x 1 
+//PIR module is attached on to the shaft of Servo
 
 //calibration
 bool pir_logic = 1; // change it to 0 for active low PIR module
@@ -25,7 +26,6 @@ int pos = 0;
 bool pir_triggered_flag = 0;
 
 Servo mainServo;
-
 
 
 void setup()
