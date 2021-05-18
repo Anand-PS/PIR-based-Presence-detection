@@ -33,6 +33,7 @@ void setup()
   mainServo.attach(servoPin);
   pinMode(pirPin, INPUT);
   pinMode(load, OUTPUT);
+  Serial.begin(9600);
 
 }
 
@@ -57,6 +58,8 @@ bool readPir()
 {
   if (digitalRead(pirPin) == pir_logic)
   {
+    Serial.println("PIR output is HIGH");
+    Serial.println("Servo Sweep started");
     pir_triggered_flag  = 1;
 
     for (pos = 0; pos <= angle_of_sweep; pos += 1)
@@ -76,6 +79,9 @@ bool readPir()
   }
   else if (pir_triggered_flag == 1 && digitalRead(pirPin) == !pir_logic) // when PIR becomes LOW
   {
+    Serial.println("PIR output is LOW");
+    Serial.println("Servo sweep will be stopped after a few sweep");
+    
     for (int i = 0; i < no_of_sweep_after_pir_low; i++)
     {
       for (pos = 0; pos <= angle_of_sweep; pos += 1)
